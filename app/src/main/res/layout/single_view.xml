@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="#fff"
+    app:cardCornerRadius="3.0dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="5.0dp"
+    android:layout_margin="5.0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/image_single_view"
+            android:background="@drawable/images"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true" />
+
+        <TextView
+            android:id="@+id/textView_single_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/redrose_bold"
+            android:text="SPECIES"
+            android:textColor="#000"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_single_view_common_name"
+            android:text="Common Names"
+            android:textSize="18sp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/redrose_regular"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1011847068335",
+    "firebase_url": "https://tree-app-f3fc8.firebaseio.com",
+    "project_id": "tree-app-f3fc8",
+    "storage_bucket": "tree-app-f3fc8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011847068335:android:7e33f47338067b68c1f25a",
+        "android_client_info": {
+          "package_name": "com.example.treeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011847068335-l6kmhu584bfara2t72j7ah6psk8kmgo5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7PYRJK5XJeqMlDJE_V3Uc94H_nr778AY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011847068335-l6kmhu584bfara2t72j7ah6psk8kmgo5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
