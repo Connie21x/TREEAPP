@@ -17,14 +17,14 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/input_search"
         android:drawableRight="@drawable/ic_search"
-        android:fontFamily="@font/redrose_regular"
+        android:fontFamily="@font/dosis_bold"
         android:hint="Search Data Here......."
         android:paddingLeft="20dp"
         android:paddingTop="8dp"
         android:paddingRight="10dp"
         android:paddingBottom="8dp"
-        android:textSize="20sp"
-        android:textColor="#26061C"/>
+        android:textColor="#26061C"
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -2,7 +2,6 @@ package com.example.treeapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -38,8 +37,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.security.acl.Permission;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -111,10 +108,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         map.getUiSettings().setAllGesturesEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
-        } else {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
             map.setMyLocationEnabled(true);
+        } else {
+            ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
         }
 
         CameraPosition position = new CameraPosition.Builder().target(CityHall).zoom(10).bearing(0).tilt(0).build();
@@ -162,7 +159,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private void getUSerLocation() {
 
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
             ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
         }
         else {
@@ -177,6 +174,15 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                                     Toast.makeText(MapActivity.this, "location found", Toast.LENGTH_SHORT).show();
 
                                     //location found
+                                    /*
+                                    String lat = String.valueOf((mLastLocation.getLatitude()));
+                                    String lng = String.valueOf((mLastLocation.getLongitude()));
+                                    Intent intent = new Intent(MapActivity.this, ReportActivity.class);
+                                    intent.putExtra("lat", lat);
+                                    intent.putExtra("lng", lng);
+                                    startActivity(intent);
+
+                                     */
 
                                 } else {
                                     locationRequest();

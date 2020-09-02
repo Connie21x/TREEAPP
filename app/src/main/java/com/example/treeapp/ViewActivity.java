@@ -2,8 +2,10 @@ package com.example.treeapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ public class ViewActivity extends AppCompatActivity {
     TextView oTextView;
 
     DatabaseReference ref;
+    CardView card_common_name, card_origin;
 
     String DataName, ImageUrl, CommonName, FamilyOrigin;
 
@@ -38,6 +41,9 @@ public class ViewActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView_single_view_activity);
         mTextView = findViewById(R.id.textView_single_view_common_name_activity);
         oTextView = findViewById(R.id.textView_single_view_origin);
+        card_common_name = findViewById(R.id.card_common_name);
+        card_origin = findViewById(R.id.card_origin);
+
         ref = FirebaseDatabase.getInstance().getReference().child("Data");
 
         String DataKey = getIntent().getStringExtra("DataKey");
@@ -45,27 +51,27 @@ public class ViewActivity extends AppCompatActivity {
         ref.child(DataKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0)
-                {
+                if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
                     Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
-                    if (map.get("DataName") != null){
-                    DataName = map.get("DataName") .toString();
+                    if (map.get("DataName") != null) {
+                        DataName = map.get("DataName").toString();
+                        textView.setText(DataName);
                     }
-                    if (map.get("ImageUrl") != null){
-                    ImageUrl = map.get("ImageUrl") .toString();
+                    if (map.get("ImageUrl") != null) {
+                        ImageUrl = map.get("ImageUrl").toString();
+                        Picasso.get().load(ImageUrl).into(imageView);
                     }
-                    if (map.get("CommonName") != null){
-                    CommonName = map.get("CommonName").toString();
+                    if (map.get("CommonName") != null) {
+                        CommonName = map.get("CommonName").toString();
+                        mTextView.setText(CommonName);
+                        card_common_name.setVisibility(View.VISIBLE);
+                    }
+                    if (map.get("FamilyOrigin") != null) {
+                        FamilyOrigin = map.get("FamilyOrigin").toString();
+                        oTextView.setText(FamilyOrigin);
+                        card_origin.setVisibility(View.VISIBLE);
+                    }
 
-                    }
-                    if (map.get("FamilyOrigin") != null){
-                    FamilyOrigin = map.get("FamilyOrigin").toString();
-                    }
-
-                    Picasso.get().load(ImageUrl).into(imageView);
-                    textView.setText(DataName);
-                    mTextView.setText(CommonName);
-                    oTextView.setText(FamilyOrigin);
                 }
             }
 

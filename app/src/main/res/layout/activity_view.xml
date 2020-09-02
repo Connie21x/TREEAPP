@@ -30,18 +30,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/dosis_bold"
             android:text="SPECIES"
             android:textColor="#26061C"
-            android:textSize="25sp"
-            android:fontFamily="@font/redrose_bold"/>
+            android:textSize="25sp" />
         <androidx.cardview.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="10dp"
-            card_view:cardElevation="5dp"
-            card_view:cardUseCompatPadding="false"
-            android:layout_margin="7dp">
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="false"
+            android:layout_margin="7dp"
+            android:visibility="gone"
+            android:id="@+id/card_common_name">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -49,50 +50,53 @@
                 android:padding="7dp">
 
                 <TextView
+                    android:text="Common Names"
                     android:id="@+id/image_single_view_activities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/redrose_bold"
+                    android:fontFamily="@font/dosis_bold"
                     android:textColor="#162606"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/textView_single_view_common_name_activity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_single_view_activities"
-                    android:fontFamily="@font/redrose_regular"
-                    android:textSize="18sp"/>
+                    android:fontFamily="@font/dosis"
+                    android:textSize="18sp" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="10dp"
-            card_view:cardElevation="5dp"
-            card_view:cardUseCompatPadding="false"
-            android:layout_margin="7dp">
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="false"
+            android:layout_margin="7dp"
+            android:visibility="gone"
+            android:id="@+id/card_origin">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="7dp">
 
                 <TextView
+                    android:text="Family Name and Origin"
                     android:id="@+id/image_single_view_activities_origin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/redrose_bold"
+                    android:fontFamily="@font/dosis_bold"
                     android:textColor="#162606"
                     android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/textView_single_view_origin"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_single_view_activities_origin"
-                    android:fontFamily="@font/redrose_regular"
+                    android:fontFamily="@font/dosis"
                     android:textSize="18sp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

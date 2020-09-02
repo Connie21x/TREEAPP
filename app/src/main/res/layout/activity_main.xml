@@ -15,40 +15,40 @@
         android:id="@+id/imageViewAdd"/>
 
     <EditText
+        android:id="@+id/inputImageName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Species Name"
-        android:id="@+id/inputImageName"
         android:layout_below="@id/imageViewAdd"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:fontFamily="@font/redrose_regular"
-        android:textSize="20sp"
-        android:textColor="#26061C"/>
+        android:fontFamily="@font/dosis"
+        android:hint="Enter Species Name"
+        android:textColor="#26061C"
+        android:textSize="20sp" />
 
     <EditText
+        android:id="@+id/inputImageCommonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Local Name"
-        android:id="@+id/inputImageCommonName"
         android:layout_below="@id/inputImageName"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:fontFamily="@font/redrose_regular"
-        android:textSize="20sp"
-        android:textColor="#26061C"/>
+        android:fontFamily="@font/dosis"
+        android:hint="Enter Local Name"
+        android:textColor="#26061C"
+        android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/textViewProgress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewProgress"
         android:layout_below="@id/inputImageCommonName"
-        android:text="0.0%"
-        android:gravity="center"
-        android:textSize="25sp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/redrose_bold"
-        android:textColor="#3D3039"/>
+        android:fontFamily="@font/dosis_bold"
+        android:gravity="center"
+        android:text="0.0%"
+        android:textColor="#3D3039"
+        android:textSize="25sp" />
 
     <ProgressBar
         android:layout_width="match_parent"
@@ -61,16 +61,16 @@
         android:outlineAmbientShadowColor="@color/colorPrimary"/>
 
     <Button
+        android:id="@+id/btnUpload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Species"
-        android:id="@+id/btnUpload"
         android:layout_below="@id/progressBar"
         android:layout_marginLeft="85dp"
         android:layout_marginRight="85dp"
-        android:fontFamily="@font/redrose_bold"
-        android:textSize="18sp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/dosis_bold"
+        android:text="Add Species"
         android:textColor="#26061C"
-        android:background="@drawable/custom_button"/>
+        android:textSize="18sp" />
 
   </RelativeLayout>
