@@ -58,7 +58,7 @@
         android:layout_below="@id/textViewProgress"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:outlineAmbientShadowColor="@color/colorPrimary"/>
+        android:outlineAmbientShadowColor="#26061C"/>
 
     <Button
         android:id="@+id/btnUpload"
