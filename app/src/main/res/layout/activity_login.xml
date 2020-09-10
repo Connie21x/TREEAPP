@@ -68,7 +68,7 @@
         android:textSize="18sp"/>
 
     <Button
-        android:id="@+id/registerBtn"
+        android:id="@+id/loginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
@@ -85,12 +85,23 @@
         android:id="@+id/createText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/registerBtn"
+        android:layout_below="@id/loginBtn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/dosis"
         android:text="New Here? Create Account!"
         android:textColor="#FFEB3B"
         android:textSize="16sp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBars"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/createText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:progressTint="#26061C"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

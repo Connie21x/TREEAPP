@@ -31,7 +31,7 @@
         android:textSize="20sp"/>
 
     <EditText
-        android:id="@+id/fullName"
+        android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView_create"
@@ -52,7 +52,7 @@
         android:id="@+id/Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fullName"
+        android:layout_below="@id/userName"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp"
@@ -137,6 +137,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:progressTint="#26061C"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
 </RelativeLayout>
