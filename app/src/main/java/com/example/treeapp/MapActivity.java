@@ -60,10 +60,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-        if (ContextCompat.checkSelfPermission(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
-        }
-
 
         //Initialize and Assign Variables
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -108,18 +104,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         map.getUiSettings().setAllGesturesEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
-            map.setMyLocationEnabled(true);
-        } else {
-            ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
-        }
-
         CameraPosition position = new CameraPosition.Builder().target(CityHall).zoom(10).bearing(0).tilt(0).build();
         map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
 
-        locationRequest();
+        requestPermission();
 
-        changeSettings();
     }
 
     protected void locationRequest() {
@@ -205,16 +194,28 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             }
         }
     }
+    private void requestPermission(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
+            map.setMyLocationEnabled(true);
+            locationRequest();
+
+            changeSettings();
+        } else {
+            ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
+        }
+
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
 
         if (requestCode==LOCATION_PERMISSION_CODE ){
-            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
+            if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+                requestPermission();
             }
-            else if (grantResults[0]==PackageManager.PERMISSION_DENIED)
+            else if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_DENIED)
             {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,Manifest.permission.ACCESS_FINE_LOCATION))
                 {
