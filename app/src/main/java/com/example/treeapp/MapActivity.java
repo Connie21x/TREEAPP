@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -37,6 +38,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -47,13 +49,18 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Location mLastLocation;
 
+    FloatingActionButton floatingButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        floatingButton = findViewById(R.id.btnReport);
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivity.this);
         locationRequest = LocationRequest.create();
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map_frag);
@@ -92,6 +99,20 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                 return false;
             }
         });
+
+        floatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mLastLocation != null) {
+                    String lat = String.valueOf((mLastLocation.getLatitude()));
+                    String lng = String.valueOf((mLastLocation.getLongitude()));
+                    Intent intent = new Intent(MapActivity.this, ReportActivity.class);
+                    intent.putExtra("lat", lat);
+                    intent.putExtra("lng", lng);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
@@ -100,11 +121,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         LatLng CityHall = new LatLng(0.314931, 32.586236);
         map.addMarker(new MarkerOptions().position(CityHall).title("CityHall"));
         map = googleMap;
-        map.setPadding(0, 150, 0, 0);
+        map.setPadding(0, 50, 0, 0);
         map.getUiSettings().setAllGesturesEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
 
-        CameraPosition position = new CameraPosition.Builder().target(CityHall).zoom(10).bearing(0).tilt(0).build();
+        CameraPosition position = new CameraPosition.Builder().target(CityHall).zoom(12).bearing(0).tilt(0).build();
         map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
 
         requestPermission();
@@ -148,10 +169,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private void getUSerLocation() {
 
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
-        }
-        else {
+        } else {
             fusedLocationProviderClient.getLastLocation()
                     .addOnCompleteListener(new OnCompleteListener<Location>() {
                         @SuppressLint("MissingPermission")
@@ -160,18 +180,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                             if (task.isSuccessful()) {
                                 mLastLocation = task.getResult();
                                 if (mLastLocation != null) {
-                                    Toast.makeText(MapActivity.this, "location found", Toast.LENGTH_SHORT).show();
-
-                                    //location found
-                                    /*
-                                    String lat = String.valueOf((mLastLocation.getLatitude()));
-                                    String lng = String.valueOf((mLastLocation.getLongitude()));
-                                    Intent intent = new Intent(MapActivity.this, ReportActivity.class);
-                                    intent.putExtra("lat", lat);
-                                    intent.putExtra("lng", lng);
-                                    startActivity(intent);
-
-                                     */
+                                    CameraPosition position = new CameraPosition.Builder().target(new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude())).zoom(15).bearing(0).tilt(0).build();
+                                    map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
 
                                 } else {
                                     locationRequest();
@@ -185,6 +195,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                     });
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -194,8 +205,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             }
         }
     }
-    private void requestPermission(){
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ) {
+
+    private void requestPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
             locationRequest();
 
@@ -210,36 +222,32 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
 
-        if (requestCode==LOCATION_PERMISSION_CODE ){
-            if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+        if (requestCode == LOCATION_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Has Been Granted!", Toast.LENGTH_SHORT).show();
                 requestPermission();
-            }
-            else if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_DENIED)
-            {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this,Manifest.permission.ACCESS_FINE_LOCATION))
-                {
+            } else if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-                    dialog.setTitle("Important permission:");
-                    dialog.setMessage("This permission is required to find your location");
+                    dialog.setTitle("This is an Important Permission:");
+                    dialog.setMessage("This Permission is Required to Update your Location");
                     dialog.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(MapActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},LOCATION_PERMISSION_CODE );
+                            ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
 
                         }
                     });
-                    dialog.setNegativeButton("No thanks", new DialogInterface.OnClickListener() {
+                    dialog.setNegativeButton("No Thanks", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(MapActivity.this, "Cannot find your location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MapActivity.this, "Cant Find Your Location", Toast.LENGTH_SHORT).show();
 
                         }
                     });
                     dialog.show();
-                }
-                else {
-                    Toast.makeText(this, "Cannot find your location", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Cant Find Your Location", Toast.LENGTH_SHORT).show();
 
                 }
             }

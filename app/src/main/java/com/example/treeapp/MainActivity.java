@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_IMAGE);
             }
         });
+
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                                //Toast.makeText(MainActivity.this, "Species Succesfully Uploaded", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Species Succesfully Uploaded", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }

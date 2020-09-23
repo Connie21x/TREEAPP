@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
+import android.util.EventLogTags;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,14 +24,14 @@ import java.util.Map;
 public class ViewActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    TextView textView;
-    TextView mTextView;
-    TextView oTextView;
+
+    TextView textView, mTextView, oTextView, dTextView, uTextView, pTextView, mmTextView;
 
     DatabaseReference ref;
-    CardView card_common_name, card_origin;
 
-    String DataName, ImageUrl, CommonName, FamilyOrigin;
+    CardView card_common_name, card_origin, descriptionCard, usesCard, propagationCard, managementCard;
+
+    String DataName, ImageUrl, CommonName, FamilyOrigin, Description, Uses, Propagation, Management;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,19 @@ public class ViewActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView_single_view_activity);
         mTextView = findViewById(R.id.textView_single_view_common_name_activity);
         oTextView = findViewById(R.id.textView_single_view_origin);
+
+        dTextView = findViewById(R.id.descriptionTextView);
+        uTextView = findViewById(R.id.usesTextView);
+        pTextView = findViewById(R.id.propagationTextView);
+        mmTextView = findViewById(R.id.managementTextView);
+
         card_common_name = findViewById(R.id.card_common_name);
         card_origin = findViewById(R.id.card_origin);
+
+        descriptionCard = findViewById(R.id.descriptionCard);
+        propagationCard = findViewById(R.id.propagationCard);
+        usesCard = findViewById(R.id.usesCard);
+        managementCard = findViewById(R.id.managementCard);
 
         ref = FirebaseDatabase.getInstance().getReference().child("Data");
 
@@ -53,6 +65,7 @@ public class ViewActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
                     Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
+
                     if (map.get("DataName") != null) {
                         DataName = map.get("DataName").toString();
                         textView.setText(DataName);
@@ -71,7 +84,26 @@ public class ViewActivity extends AppCompatActivity {
                         oTextView.setText(FamilyOrigin);
                         card_origin.setVisibility(View.VISIBLE);
                     }
-
+                    if (map.get("Description") != null) {
+                        Description = map.get("Description").toString();
+                        dTextView.setText(Description);
+                        descriptionCard.setVisibility(View.VISIBLE);
+                    }
+                    if (map.get("Uses") != null) {
+                        Uses = map.get("Uses").toString();
+                        uTextView.setText(Uses);
+                        usesCard.setVisibility(View.VISIBLE);
+                    }
+                    if (map.get("Propagation") != null) {
+                        Propagation = map.get("Propagation").toString();
+                        pTextView.setText(Propagation);
+                        propagationCard.setVisibility(View.VISIBLE);
+                    }
+                    if (map.get("Management") != null) {
+                        Management = map.get("Management").toString();
+                        mmTextView.setText(Management);
+                        managementCard.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -29,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
 
     EditText inputSearch;
     RecyclerView recyclerView;
-    FloatingActionButton floatingbtn;
+    FloatingActionButton floatingbtn, floatingActionButton;
     FirebaseRecyclerOptions<Data> options;
     FirebaseRecyclerAdapter<Data, MyViewHolder> adapter;
     DatabaseReference Dataref;
@@ -75,8 +76,17 @@ public class HomeActivity extends AppCompatActivity {
         inputSearch = findViewById(R.id.inputSearch);
         recyclerView = findViewById(R.id.recyclerView);
         floatingbtn = findViewById(R.id.floatingbtn);
+        floatingActionButton = findViewById(R.id.floatingActionButton);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setHasFixedSize(true);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext (), ProfileActivity.class));
+                finish();
+            }
+        });
 
         floatingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +94,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
+
         LoadData("");
 
         inputSearch.addTextChangedListener(new TextWatcher() {

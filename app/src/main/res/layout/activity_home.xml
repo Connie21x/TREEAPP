@@ -14,17 +14,18 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/input_search"
         android:drawableRight="@drawable/ic_search"
-        android:fontFamily="@font/dosis_bold"
+        android:fontFamily="@font/dosis"
         android:hint="Search Data Here......."
         android:paddingLeft="20dp"
         android:paddingTop="8dp"
         android:paddingRight="10dp"
         android:paddingBottom="8dp"
         android:textColor="#26061C"
-        android:textSize="20sp"/>
+        android:textSize="22sp"
+        android:textColorHint="#26061C"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -41,11 +42,12 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="80dp"
         android:background="#26061C"
         android:backgroundTint="#26061C"
-        android:src="@drawable/ic_add"/>
+        android:src="@drawable/ic_add"
+        app:fabSize="mini"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -57,8 +59,10 @@
         android:layout_marginBottom="15dp"
         android:clickable="true"
         android:text="LOGOUT"
+        android:background="#26061C"
+        android:backgroundTint="#26061C"
         app:fabSize="mini"
-        app:srcCompat="@drawable/ic_settings"/>
+        app:srcCompat="@drawable/ic_user"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
