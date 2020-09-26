@@ -48,7 +48,8 @@
         android:background="#090808"
         android:textColorHint="#FBF9F9"
         android:textColor="#FBF9F9"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:textColorHighlight="FBF9F9"/>
 
     <EditText
         android:id="@+id/password"
@@ -67,6 +68,7 @@
         android:background="#090808"
         android:textColorHint="#FBF9F9"
         android:textColor="#FBF9F9"
+        android:textColorHighlight="FBF9F9"
         android:textSize="18sp"/>
 
     <Button

@@ -120,7 +120,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         map = googleMap;
         LatLng CityHall = new LatLng(0.314931, 32.586236);
         map.addMarker(new MarkerOptions().position(CityHall).title("CityHall"));
-        map = googleMap;
+
         map.setPadding(0, 50, 0, 0);
         map.getUiSettings().setAllGesturesEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);

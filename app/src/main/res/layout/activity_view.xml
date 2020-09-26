@@ -45,19 +45,23 @@
                 android:fontFamily="@font/dosis_bold"
                 android:text="SPECIES"
                 android:textColor="#26061C"
-                android:textSize="25sp"
+                android:textSize="27sp"
                 android:layout_weight="5"
                 android:layout_marginTop="3dp"/>
 
-            <Button
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnLocate"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_weight="1"
-                android:text="TAGs"
+                android:text="LOCATE"
+                android:textSize="18sp"
+                android:onClick="btnSpeciesLocation"
                 android:textColor="#26061C"
-                android:fontFamily="@font/dosis_bold"
-                android:background="@drawable/text_style"/>
+                android:fontFamily="@font/dosis"
+                android:background="#26061C"
+                android:backgroundTint="#26061C"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_location"/>
 
         </LinearLayout>
 

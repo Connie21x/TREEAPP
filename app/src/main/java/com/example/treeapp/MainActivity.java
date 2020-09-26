@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         textViewProgress.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
 
-        Dataref = FirebaseDatabase.getInstance().getReference().child("Data");
-        StorageRef = FirebaseStorage.getInstance().getReference().child("DataImage");
+        Dataref = FirebaseDatabase.getInstance().getReference().child("Species");
+        StorageRef = FirebaseStorage.getInstance().getReference().child("SpeciesImage");
 
         imageViewAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         HashMap hashMap = new HashMap();
-                        hashMap.put("DataName", imageName);
+                        hashMap.put("SpeciesName", imageName);
                         hashMap.put("CommonName", imageCommonName);
                         hashMap.put("ImageUrl", uri.toString());
 

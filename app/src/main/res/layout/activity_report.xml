@@ -37,6 +37,8 @@
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:src="@drawable/ic_image"
         android:scaleType="fitXY"
         android:id="@+id/imageNewTree"/>
@@ -163,6 +165,15 @@
         android:text="Send"
         android:textColor="#26061C"
         android:textSize="15sp"/>
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/btnUploadTree"
+        android:id="@+id/reportTreeMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_marginTop="10dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

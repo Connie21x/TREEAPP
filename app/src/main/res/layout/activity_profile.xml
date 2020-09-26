@@ -1,143 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity"
-    android:background="@drawable/wallpaper">
-
+    android:orientation="vertical"
+    android:background="@color/grayLight">
+    
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="405dp">
 
-        <TextView
-            android:id="@+id/profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PROFILE"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
-            android:textColor="#000000"
-            android:textSize="38sp"
-            android:fontFamily="@font/dosis_bold"/>
-
-        <TextView
-            android:id="@+id/profileText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Explore Kampala's Trees"
-            android:layout_below="@+id/profile"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:textSize="15sp"
-            android:fontFamily="@font/dosis"
-            android:textColor="#FF5722"/>
-
-
-        <ImageView
-            android:id="@+id/profileImage"
-            android:layout_below="@id/profileText"
-            android:layout_width="120dp"
+        <LinearLayout
+            android:background="@drawable/gradientbackground"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_marginTop="35dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/circlecropped"/>
+            <TextView
+                android:id="@+id/userNameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="User Name"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/dosis"
+                android:textColor="#fff"
+                android:textColorHint="#fff"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="380dp"
             android:layout_height="120dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_user_circle_24"/>
+            android:layout_marginTop="275dp">
 
-        <TextView
-            android:id="@+id/userNameProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/profileImage"
-            android:layout_marginLeft="10dp"
-            android:textSize="30sp"
-            android:layout_marginTop="15dp"
-            android:text="UserName"
-            android:fontFamily="@font/dosis"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:layout_marginRight="10dp"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"/>
-
-        <LinearLayout
-            android:id="@+id/linearLayoutProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/userNameProfile"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_email"
-                android:layout_marginTop="12dp"/>
-
-            <TextView
-                android:id="@+id/emailProfile"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:textSize="22sp"
-                android:layout_marginTop="4dp"
-                android:text="Email"
-                android:fontFamily="@font/dosis"
-                android:padding="6dp"
-                android:background="#090808"
-                android:textColorHint="#FBF9F9"
-                android:textColor="#FBF9F9"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Catalogue"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/dosis"/>
+                    <ImageView
+                        android:id="@+id/onCatalogue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_catalogue"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingTop="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Map"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/dosis"/>
+                    <ImageView
+                        android:id="@+id/onMap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_map"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingTop="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Report"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/dosis"/>
+                    <ImageView
+                        android:id="@+id/onReport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_report"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingTop="10dp"/>
+                </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayoutProfile1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayoutProfile"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp">
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_phone"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/phoneProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:textSize="22sp"
-                android:layout_marginTop="5dp"
-                android:text="Phone Number"
-                android:fontFamily="@font/dosis"
-                android:background="#090808"
-                android:padding="6dp"
-                android:textColorHint="#FBF9F9"
-                android:textColor="#FBF9F9"/>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@id/linearLayoutProfile1"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="105dp"
-            android:layout_marginRight="105dp"
-            android:text="LOGOUT"
-            android:textColor="#26061C"
-            android:textSize="18sp"
-            android:background="@drawable/custom_button"
-            android:fontFamily="@font/dosis"
-            android:textStyle="bold"/>
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_email"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailProfile"
+                android:hint="Email"
+                android:textStyle="bold"
+                android:fontFamily="@font/dosis"
+                android:paddingLeft="20dp"
+                android:textSize="20sp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_phone"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneProfile"
+                android:hint="Phone"
+                android:textStyle="bold"
+                android:fontFamily="@font/dosis"
+                android:paddingLeft="20dp"
+                android:textSize="20sp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_place"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/placeProfile"
+                android:hint="Address"
+                android:textStyle="bold"
+                android:fontFamily="@font/dosis"
+                android:paddingLeft="20dp"
+                android:textSize="20sp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
 
-</RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logout"
+        android:background="@drawable/buttonstylegradient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/dosis"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Logout"
+        android:textColor="#fff"/>
+
+</LinearLayout>

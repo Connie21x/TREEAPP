@@ -46,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(ProfileActivity.this, "Thanks You for Using the TREE APP", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                //finish();
+                finish();
             }
         });
 

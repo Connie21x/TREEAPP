@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.EventLogTags;
 import android.view.View;
@@ -32,6 +33,7 @@ public class ViewActivity extends AppCompatActivity {
     CardView card_common_name, card_origin, descriptionCard, usesCard, propagationCard, managementCard;
 
     String DataName, ImageUrl, CommonName, FamilyOrigin, Description, Uses, Propagation, Management;
+    String DataKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class ViewActivity extends AppCompatActivity {
 
         ref = FirebaseDatabase.getInstance().getReference().child("Data");
 
-        String DataKey = getIntent().getStringExtra("DataKey");
+        DataKey = getIntent().getStringExtra("DataKey");
 
         ref.child(DataKey).addValueEventListener(new ValueEventListener() {
             @Override
@@ -111,8 +113,15 @@ public class ViewActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 Toast.makeText(ViewActivity.this, "Database Error", Toast.LENGTH_SHORT).show();
-
             }
         });
+     }
+
+    public void btnSpeciesLocation(View view) {
+        Intent intent = new Intent(getApplicationContext(), LocateATree.class);
+        intent.putExtra("name",DataKey);
+        intent.putExtra("species",DataName);
+        startActivity(intent);
+
     }
 }
