@@ -7,119 +7,73 @@
     android:layout_height="match_parent"
     tools:context=".ReportActivity">
 
-    <TextView
-        android:id="@+id/reportATree"
+    <View
         android:layout_width="match_parent"
-        android:layout_marginTop="25dp"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/dosis"
-        android:text="REPORT A TREE"
-        android:textSize="26sp"
-        android:textColor="#FFEB3B"
-        android:textStyle="bold"/>
+        android:layout_height="150dp"
+        android:background="@color/wavePrimary"
+        android:id="@+id/topView"/>
 
-    <TextView
-        android:id="@+id/reportTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Report A Dangerous or New Tree"
-        android:layout_below="@+id/reportATree"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:textSize="15sp"
-        android:fontFamily="@font/dosis"
-        android:textColor="#26061C"/>
-
-    <ImageView
-        android:layout_below="@+id/reportTextView"
-        android:layout_marginTop="5dp"
+    <View
+        android:layout_below="@+id/topView"
+        android:id="@+id/topView2"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/ic_image"
-        android:scaleType="fitXY"
-        android:id="@+id/imageNewTree"/>
-
-    <EditText
-        android:id="@+id/inputTreeName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageNewTree"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/dosis"
-        android:hint="Enter Tree Name"
-        android:textColor="#26061C"
-        android:textSize="15sp"
-        android:padding="12dp"/>
+        android:layout_height="100dp"
+        android:background="@drawable/ic_wavez"/>
 
     <LinearLayout
-        android:id="@+id/linearLayoutReport"
+        android:id="@+id/layoutViewOne"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inputTreeName"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:orientation="horizontal"
+        android:weightSum="4">
 
         <ImageView
+            android:layout_weight="1"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:src="@drawable/add_a_photo"
+            android:layout_marginTop="32dp"
+            android:id="@+id/imageNewTree"
+            android:layout_marginLeft="5dp"/>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_height"
-            android:layout_marginTop="10dp"/>
+            android:layout_weight="3"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp">
 
-        <EditText
-            android:id="@+id/inputExtHeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:fontFamily="@font/dosis"
-            android:hint="Enter Est. Tree Height (m)"
-            android:textColor="#26061C"
-            android:textSize="15sp"
-            android:padding="12dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis"
+                android:text="Report a Tree"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="32sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Report a Dangerous or New Tree"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/dosis"
+                android:textColor="#000000"
+                android:textSize="19sp"/>
+
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayoutReport"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_info"
-            android:layout_marginTop="10dp"/>
-
-        <EditText
-            android:id="@+id/inputExtHealth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:fontFamily="@font/dosis"
-            android:hint="Enter Tree Health i.e. Healthy, Dying or Dead"
-            android:textColor="#26061C"
-            android:textSize="14sp"
-            android:padding="12dp"/>
-    </LinearLayout>
-
     <LinearLayout
         android:id="@+id/linearLayoutLatLng"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayoutProfile"
-        android:layout_marginTop="5dp"
+        android:layout_below="@id/layoutViewOne"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="30dp"
         android:orientation="horizontal"
-        android:layout_marginRight="30dp">
+        android:layout_marginRight="30dp"
+        android:padding="2dp">
 
         <TextView
             android:id="@+id/latTv"
@@ -128,12 +82,9 @@
             android:layout_weight="1"
             android:layout_marginRight="5dp"
             android:fontFamily="@font/dosis"
-            android:hint="Lat"
             android:padding="5dp"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            android:textSize="20sp"
-            android:background="@drawable/text_style"
+            android:textSize="22sp"
+            android:background="@drawable/roundbutton"
             android:textAlignment="center"/>
 
         <TextView
@@ -142,38 +93,130 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:background="@drawable/text_style"
+            android:background="@drawable/roundbutton"
             android:fontFamily="@font/dosis"
-            android:hint="Lng"
             android:padding="5dp"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textAlignment="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/linearLayoutLatLng"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/roundbutton">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_edit"
+            android:layout_marginTop="5dp"
+            android:paddingTop="3dp"/>
+
+        <EditText
+            android:id="@+id/inputTreeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dosis"
+            android:hint="Tree Name"
+            android:ems="10"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayoutReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/layoutView1"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/roundbutton">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_height"
+            android:layout_marginTop="5dp"
+            android:paddingTop="3dp"/>
+
+        <EditText
+            android:id="@+id/inputExtHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dosis"
+            android:hint="Tree Height (m)"
+            android:ems="10"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayoutProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/linearLayoutReport"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/roundbutton">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_info"
+            android:layout_marginTop="5dp"
+            android:paddingTop="3dp"/>
+
+        <EditText
+            android:id="@+id/inputExtHealth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dosis"
+            android:hint="Healthy, Dying or Dead"
+            android:ems="10"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <Button
         android:id="@+id/btnUploadTree"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@id/linearLayoutLatLng"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="120dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="32dp"
+        android:layout_below="@id/linearLayoutProfile"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/dosis_bold"
-        android:text="Send"
-        android:textColor="#26061C"
-        android:textSize="15sp"/>
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_below="@+id/btnUploadTree"
         android:id="@+id/reportTreeMap"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="15dp"
+        android:layout_above="@id/bottom_navigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

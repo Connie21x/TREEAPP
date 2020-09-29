@@ -7,83 +7,72 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/addNewSpecies"
+    <View
         android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/dosis"
-        android:text="Report a New Species"
-        android:textSize="26sp"
-        android:textColor="#26061C"
-        android:textStyle="bold"/>
+        android:layout_height="150dp"
+        android:background="@color/wavePrimary"
+        android:id="@+id/topView"/>
 
-    <ImageView
-        android:layout_marginTop="60dp"
+    <View
+        android:layout_below="@+id/topView"
+        android:id="@+id/topView2"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/ic_image"
-        android:scaleType="fitXY"
-        android:id="@+id/imageViewAdd"/>
-
-    <EditText
-        android:id="@+id/inputImageName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageViewAdd"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:fontFamily="@font/dosis"
-        android:hint="Enter Species Name"
-        android:textColor="#26061C"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/inputImageCommonName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/inputImageName"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:fontFamily="@font/dosis"
-        android:hint="Enter Local Name"
-        android:textColor="#26061C"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textViewProgress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/inputImageCommonName"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/dosis_bold"
-        android:gravity="center"
-        android:text="0.0%"
-        android:textColor="#3D3039"
-        android:textSize="25sp" />
-
-    <ProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_below="@id/textViewProgress"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"/>
+        android:layout_height="100dp"
+        android:background="@drawable/ic_wavej"/>
 
     <LinearLayout
-        android:id="@+id/linearLatLng"
+        android:id="@+id/layoutViewSpecies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/progressBar"
-        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis"
+                android:text="Report a New Species"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Report a New Species for the Catalogue"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/dosis"
+                android:textColor="#000000"
+                android:textSize="17sp"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:src="@drawable/add_a_photo"
+            android:layout_marginTop="32dp"
+            android:id="@+id/imageViewAdd"
+            android:layout_marginRight="12dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayoutLatLngSpecies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutViewSpecies"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="30dp"
         android:orientation="horizontal"
-        android:layout_marginRight="30dp">
+        android:layout_marginRight="30dp"
+        android:padding="2dp">
 
         <TextView
             android:id="@+id/latSpeciesTv"
@@ -92,12 +81,9 @@
             android:layout_weight="1"
             android:layout_marginRight="5dp"
             android:fontFamily="@font/dosis"
-            android:hint="Lat"
             android:padding="5dp"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            android:textSize="20sp"
-            android:background="@drawable/text_style"
+            android:textSize="22sp"
+            android:background="@drawable/roundbutton"
             android:textAlignment="center"/>
 
         <TextView
@@ -106,28 +92,121 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:background="@drawable/text_style"
+            android:background="@drawable/roundbutton"
             android:fontFamily="@font/dosis"
-            android:hint="Lng"
             android:padding="5dp"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textAlignment="center"/>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutViewSpeciesOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/linearLayoutLatLngSpecies"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/roundbutton">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_edit"
+            android:layout_marginTop="5dp"
+            android:paddingTop="3dp"/>
+
+        <EditText
+            android:id="@+id/inputImageName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dosis"
+            android:hint="Species Name"
+            android:ems="10"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutViewSpeciesTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/layoutViewSpeciesOne"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/roundbutton">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_info"
+            android:layout_marginTop="5dp"
+            android:paddingTop="3dp"/>
+
+        <EditText
+            android:id="@+id/inputImageCommonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dosis"
+            android:hint="Local or English Name"
+            android:ems="10"
+            android:paddingLeft="20dp"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/layoutViewSpeciesTwo"
+        android:gravity="center"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:text="0.0%"
+        android:textColor="@color/wavePrimary"
+        android:textSize="25sp"/>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_below="@id/textViewProgress"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:progressTint="@color/wavePrimary"/>
 
     <Button
+        android:layout_below="@+id/progressBar"
         android:id="@+id/btnUpload"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@id/linearLatLng"
-        android:layout_marginLeft="90dp"
-        android:layout_marginRight="90dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/dosis_bold"
+        android:fontFamily="@font/dosis"
+        android:textStyle="bold"
         android:text="Add Species"
-        android:textColor="#26061C"
+        android:textColor="@color/white"
         android:textSize="18sp" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/btnUpload"
+        android:id="@+id/reportSpeciesMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_marginTop="15dp"/>
 
   </RelativeLayout>

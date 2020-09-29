@@ -6,4 +6,6 @@
     <color name="starBlue">#09c6df</color>
     <color name="endBlue">#0bcce6</color>
     <color name="colorAccent">#070707</color>
+    <color name="wavePrimary">#09c6df</color>
+    <color name="wavePrimaryDark">#09c6df</color>
 </resources>

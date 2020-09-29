@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,199 +8,252 @@
     tools:context=".ProfileActivity"
     android:orientation="vertical"
     android:background="@color/grayLight">
-    
-    <RelativeLayout
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="405dp">
+        android:layout_height="180dp"
+        android:background="@color/wavePrimary"
+        android:id="@+id/topView"/>
+
+    <View
+        android:layout_below="@+id/topView"
+        android:id="@+id/topView2"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/ic_wavez"/>
+
+    <LinearLayout
+        android:id="@+id/layoutSpeciesOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/circlecropped"
+            android:layout_marginTop="32dp"
+            android:id="@+id/imageNewTree"
+            android:layout_marginLeft="5dp"/>
 
         <LinearLayout
-            android:background="@drawable/gradientbackground"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_marginTop="35dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/circlecropped"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis"
+                android:text="Thanks for Using the TREE APP"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="32sp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/userNameProfile"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:hint="User Name"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:text="User"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/dosis"
-                android:textColor="#fff"
-                android:textColorHint="#fff"
-                android:layout_marginTop="10dp"/>
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="26sp"/>
+
         </LinearLayout>
-        <androidx.cardview.widget.CardView
-            android:layout_width="380dp"
-            android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="275dp">
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_below="@+id/layoutSpeciesOne"
+        android:layout_width="390dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        app:cardCornerRadius="15dp"
+        android:id="@+id/cardViewSpecies">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:background="@drawable/roundbutton">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Catalogue"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/dosis"/>
-                    <ImageView
-                        android:id="@+id/onCatalogue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_catalogue"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:paddingTop="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Map"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/dosis"/>
-                    <ImageView
-                        android:id="@+id/onMap"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_map"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:paddingTop="10dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Report"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/dosis"/>
-                    <ImageView
-                        android:id="@+id/onReport"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_report"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:paddingTop="10dp"/>
-                </LinearLayout>
-
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catalogue"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/dosis"/>
+                <ImageView
+                    android:id="@+id/onCatalogue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_catalogue"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingTop="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Map"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/dosis"/>
+                <ImageView
+                    android:id="@+id/onMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_map"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingTop="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Report"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/dosis"/>
+                <ImageView
+                    android:id="@+id/onReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_report"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingTop="10dp"/>
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
 
-    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
     <LinearLayout
-        android:layout_width="360dp"
+        android:id="@+id/layoutSpeciesTwo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="30dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_below="@+id/cardViewSpecies"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp">
         
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="25dp">
+            android:padding="6dp"
+            android:background="@drawable/roundbutton">
             <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_email"/>
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_email"
+                android:layout_marginTop="3dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/emailProfile"
                 android:hint="Email"
-                android:textStyle="bold"
                 android:fontFamily="@font/dosis"
+                android:textStyle="bold"
                 android:paddingLeft="20dp"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="25dp">
+            android:padding="6dp"
+            android:background="@drawable/roundbutton">
             <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_marginTop="3dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_phone"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/phoneProfile"
                 android:hint="Phone"
-                android:textStyle="bold"
                 android:fontFamily="@font/dosis"
                 android:paddingLeft="20dp"
-                android:textSize="20sp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="25sp"
+                android:layout_gravity="center_vertical"
+                android:textStyle="bold"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="25dp">
+            android:padding="6dp"
+            android:background="@drawable/roundbutton">
+
             <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_marginTop="3dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/ic_place"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/placeProfile"
                 android:hint="Address"
-                android:textStyle="bold"
                 android:fontFamily="@font/dosis"
                 android:paddingLeft="20dp"
-                android:textSize="20sp"
+                android:textSize="25sp"
+                android:textStyle="bold"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
-
     </LinearLayout>
+
 
     <Button
         android:id="@+id/logout"
-        android:background="@drawable/buttonstylegradient"
-        android:layout_width="wrap_content"
+        android:background="@drawable/custom_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/dosis"
+        android:layout_below="@+id/layoutSpeciesTwo"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:text="Logout"
-        android:textColor="#fff"/>
+        android:textColor="@color/white"/>
 
-</LinearLayout>
+</RelativeLayout>
