@@ -122,6 +122,5 @@ public class ViewActivity extends AppCompatActivity {
         intent.putExtra("name",DataKey);
         intent.putExtra("species",DataName);
         startActivity(intent);
-
     }
 }

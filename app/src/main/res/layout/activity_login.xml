@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/layoutViewOne"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="130dp"
         android:layout_marginRight="35dp"
         android:layout_marginLeft="30dp"
         android:background="@drawable/roundbutton">
@@ -127,12 +127,22 @@
         android:background="@drawable/custom_button"
         android:textColor="@color/white"/>
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADMIN"
+        android:id="@+id/adminCheckBox"
+        android:textColor="@color/wavePrimary"
+        android:layout_below="@+id/loginBtn"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"/>
+
     <TextView
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/loginBtn"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/adminCheckBox"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:text="FORGOT PASSWORD?"
         android:fontFamily="@font/dosis"
@@ -147,7 +157,7 @@
         android:layout_below="@id/forgotPassword"
         android:layout_centerInParent="true"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="50dp"
         android:weightSum="2">
 
@@ -157,13 +167,15 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dosis"
             android:text="OR"
+            android:layout_gravity="right"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginLeft="100dp"/>
+            android:layout_marginLeft="105dp"/>
 
         <ImageView
-            android:layout_marginRight="100dp"
+            android:layout_marginRight="105dp"
             android:layout_weight="1"
+            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_reg"/>

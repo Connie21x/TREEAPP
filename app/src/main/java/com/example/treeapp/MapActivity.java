@@ -30,6 +30,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -39,6 +40,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -119,13 +125,29 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         LatLng CityHall = new LatLng(0.314931, 32.586236);
-        map.addMarker(new MarkerOptions().position(CityHall).title("CityHall"));
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Data");
+        ValueEventListener listener = databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    for (DataSnapshot treeKey : dataSnapshot.getChildren()) {
+                        addMarker(treeKey.getKey());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
 
         map.setPadding(0, 50, 0, 0);
         map.getUiSettings().setAllGesturesEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
 
-        CameraPosition position = new CameraPosition.Builder().target(CityHall).zoom(12).bearing(0).tilt(0).build();
+        CameraPosition position = new CameraPosition.Builder().target(CityHall).zoom(10).bearing(0).tilt(0).build();
         map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
 
         requestPermission();
@@ -180,7 +202,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
                             if (task.isSuccessful()) {
                                 mLastLocation = task.getResult();
                                 if (mLastLocation != null) {
-                                    CameraPosition position = new CameraPosition.Builder().target(new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude())).zoom(15).bearing(0).tilt(0).build();
+                                    CameraPosition position = new CameraPosition.Builder().target(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude())).zoom(13).bearing(0).tilt(0).build();
                                     map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
 
                                 } else {
@@ -216,6 +238,41 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_CODE);
         }
 
+    }
+
+    private void addMarker(final String key) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Data").child(key);
+        ValueEventListener valueEventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String name = "";
+                if (dataSnapshot.exists()) {
+                    if (dataSnapshot.child("DataName").getValue() != null) {
+                        name = dataSnapshot.child("DataName").getValue().toString();
+                    }
+                    if (dataSnapshot.child("Lato").getValue() != null && dataSnapshot.child("Lngo").getValue() != null) {
+
+                        Double latitude = Double.valueOf(dataSnapshot.child("Lato").getValue().toString());
+                        Double longitude = Double.valueOf(dataSnapshot.child("Lngo").getValue().toString());
+                        if (latitude != null && longitude != null) {
+                            LatLng treeLocation = new LatLng(latitude, longitude);
+                            if (name.equals("Anacardium occidentale") || name.equals("Alstonia boonei")) {
+                                map.addMarker(new MarkerOptions().position(treeLocation).icon(BitmapDescriptorFactory.fromResource(R.drawable.treeinfoss)).title(name));
+                            } else {
+                                map.addMarker(new MarkerOptions().position(treeLocation).icon(BitmapDescriptorFactory.fromResource(R.drawable.treeinfos)).title(name));
+                            }
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(treeLocation, 15F));
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

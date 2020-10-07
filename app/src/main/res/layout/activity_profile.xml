@@ -11,7 +11,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:background="@color/wavePrimary"
         android:id="@+id/topView"/>
 
@@ -36,7 +36,7 @@
             android:src="@drawable/circlecropped"
             android:layout_marginTop="32dp"
             android:id="@+id/imageNewTree"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="10dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -50,19 +50,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/dosis"
                 android:text="Thanks for Using the TREE APP"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="32sp"
-                android:textStyle="bold"/>
+                android:textSize="32sp"/>
             <TextView
                 android:id="@+id/userNameProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="User"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/dosis"
-                android:textStyle="bold"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/white"
                 android:textSize="26sp"/>
 
@@ -71,9 +66,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_below="@+id/layoutSpeciesOne"
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="60dp"
         app:cardCornerRadius="15dp"
         android:id="@+id/cardViewSpecies">
@@ -96,8 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Catalogue"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/dosis"/>
+                    android:textSize="18sp" />
                 <ImageView
                     android:id="@+id/onCatalogue"
                     android:layout_width="wrap_content"
@@ -118,8 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Map"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/dosis"/>
+                    android:textSize="18sp"/>
                 <ImageView
                     android:id="@+id/onMap"
                     android:layout_width="wrap_content"
@@ -140,8 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Report"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/dosis"/>
+                    android:textSize="18sp"/>
                 <ImageView
                     android:id="@+id/onReport"
                     android:layout_width="wrap_content"
@@ -161,7 +155,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_gravity="center"
         android:layout_below="@+id/cardViewSpecies"
         android:layout_marginLeft="32dp"
@@ -184,8 +178,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/emailProfile"
                 android:hint="Email"
-                android:fontFamily="@font/dosis"
-                android:textStyle="bold"
                 android:paddingLeft="20dp"
                 android:textSize="25sp"
                 android:layout_gravity="center_vertical"/>
@@ -207,11 +199,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/phoneProfile"
                 android:hint="Phone"
-                android:fontFamily="@font/dosis"
                 android:paddingLeft="20dp"
                 android:textSize="25sp"
-                android:layout_gravity="center_vertical"
-                android:textStyle="bold"/>
+                android:layout_gravity="center_vertical"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="15dp"
@@ -231,14 +221,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/placeProfile"
                 android:hint="Address"
-                android:fontFamily="@font/dosis"
                 android:paddingLeft="20dp"
                 android:textSize="25sp"
-                android:textStyle="bold"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
     </LinearLayout>
-
 
     <Button
         android:id="@+id/logout"

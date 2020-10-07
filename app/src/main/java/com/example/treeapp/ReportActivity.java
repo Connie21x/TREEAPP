@@ -129,7 +129,8 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
                 if (!treeName.isEmpty() && !treeHeight.isEmpty() && !treeHealth.isEmpty() && !latitude.isEmpty() && !longitude.isEmpty()) {
                     if (isTreeImageAdded != false) {
                         uploadImage(treeName, treeHeight, treeHealth, latitude, longitude);
-                    } else {
+                    }
+                    else {
                         Toast.makeText(ReportActivity.this, "Insert Image", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -231,8 +232,8 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
             mMap.moveCamera(CameraUpdateFactory.newCameraPosition(position));
             requestPermission();
         }
-
     }
+
     protected void locationRequest() {
 
         locationRequest.setInterval(20000);

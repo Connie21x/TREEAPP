@@ -2,4 +2,5 @@
     <string name="app_name">TREE APP</string>
     <string name="map_key" translatable="false">AIzaSyC5S_geujjt0X6dKp90g-bo5pIXCB3AN_o</string>
     <string name="title_activity_locate_a_tree">Map</string>
+    <string name="title_activity_admin_view">Map</string>
 </resources>

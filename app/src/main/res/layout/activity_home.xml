@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/input_search"
         android:drawableRight="@drawable/ic_search"
@@ -35,6 +35,31 @@
         android:layout_above="@id/bottom_navigation"
         android:layout_below="@id/inputSearch"/>
 
+    <ImageView
+        android:id="@+id/infoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_info"
+        android:clickable="true"
+        android:layout_alignParentEnd="false"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentRight="true"/>
+
+    <ImageView
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_edit"
+        android:clickable="true"
+        android:visibility="invisible"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_marginBottom="135dp"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingbtn"
         android:layout_width="wrap_content"
@@ -44,7 +69,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="75dp"
         android:background="@color/colorPrimaryDark"
         android:backgroundTint="@color/colorPrimaryDark"
         android:src="@drawable/ic_add"

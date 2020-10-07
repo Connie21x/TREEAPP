@@ -32,8 +32,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".AdminViewActivity"
+            android:label="@string/title_activity_admin_view"></activity>
+        <activity
             android:name=".LocateATree"
-            android:label="@string/title_activity_locate_a_tree"></activity>
+            android:label="@string/title_activity_locate_a_tree" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity">

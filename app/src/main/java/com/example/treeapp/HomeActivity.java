@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -34,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseRecyclerOptions<Data> options;
     FirebaseRecyclerAdapter<Data, MyViewHolder> adapter;
     DatabaseReference Dataref;
+    ImageView imageViewButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         floatingbtn = findViewById(R.id.floatingbtn);
         floatingActionButton = findViewById(R.id.floatingActionButton);
+        imageViewButton = findViewById(R.id.editButton);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setHasFixedSize(true);
 
@@ -117,6 +120,14 @@ public class HomeActivity extends AppCompatActivity {
                 {
                     LoadData("");
                 }
+            }
+        });
+
+        imageViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, AdminViewActivity.class);
+                startActivity(intent);
             }
         });
     }

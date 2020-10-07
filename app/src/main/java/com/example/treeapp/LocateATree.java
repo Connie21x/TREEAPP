@@ -10,6 +10,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -55,16 +56,27 @@ public class LocateATree extends FragmentActivity implements OnMapReadyCallback 
         ValueEventListener listener = databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String name = "";
                 if (dataSnapshot.exists()) {
+
+                    if (dataSnapshot.child("DataName").getValue() != null) {
+                        name = dataSnapshot.child("DataName").getValue().toString();
+                    }
+
                     if (dataSnapshot.child("Lato").getValue() != null && dataSnapshot.child("Lngo").getValue() != null) {
 
                         Double latitude = Double.valueOf(dataSnapshot.child("Lato").getValue().toString());
                         Double longitude = Double.valueOf(dataSnapshot.child("Lngo").getValue().toString());
                         if (latitude != null && longitude != null) {
                             LatLng treeLocation = new LatLng(latitude, longitude);
-                            mMap.addMarker(new MarkerOptions().position(treeLocation).title(treeSpecies));
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(treeLocation, 15F));
 
+                            if (name.equals("Anacardium occidentale") || name.equals("Alstonia boonei")) {
+                                mMap.addMarker(new MarkerOptions().position(treeLocation).icon(BitmapDescriptorFactory.fromResource(R.drawable.treeinfoss)).title(name));
+                            }
+                            else {
+                                mMap.addMarker(new MarkerOptions().position(treeLocation).icon(BitmapDescriptorFactory.fromResource(R.drawable.treeinfos)).title(name));
+                            }
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(treeLocation, 15F));
                         }
                     }
                 }

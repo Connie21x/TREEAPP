@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +20,12 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView userName, phone, email;
+    TextView userName, phone, email, mPlace;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
     Button logoutBtn;
+    ImageView catalogue, map, report;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,40 @@ public class ProfileActivity extends AppCompatActivity {
         userName = findViewById(R.id.userNameProfile);
         email = findViewById(R.id.emailProfile);
         logoutBtn = findViewById(R.id.logout);
+        catalogue = findViewById(R.id.onCatalogue);
+        mPlace = findViewById(R.id.placeProfile);
+        map = findViewById(R.id.onMap);
+        report = findViewById(R.id.onReport);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
+        if (fAuth.getCurrentUser()!= null) {
 
-        userID = fAuth.getCurrentUser().getUid();
+            userID = fAuth.getCurrentUser().getUid();
+        }
+        catalogue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
+                startActivity(intent);
+            }
+        });
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(ProfileActivity.this, "Thanks You for Using the TREE APP", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                finish();
+                //finish();
             }
         });
 
@@ -58,6 +89,7 @@ public class ProfileActivity extends AppCompatActivity {
                 phone.setText(value.getString("phone"));
                 userName.setText(value.getString("uName"));
                 email.setText(value.getString("email"));
+                mPlace.setText(value.getString("address"));;
             }
         });
     }
