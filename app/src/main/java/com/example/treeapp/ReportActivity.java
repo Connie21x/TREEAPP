@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,6 +44,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -66,7 +69,7 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
 
     Uri imageUri;
     boolean isTreeImageAdded = false;
-    String treeName,treeHeight, treeHealth;
+    String treeName, treeHeight, treeHealth;
 
     DatabaseReference databaseReference;
     StorageReference storageReference;
@@ -112,7 +115,7 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         });
 
-        if (latitude != null && longitude != null){
+        if (latitude != null && longitude != null) {
             Lat.setText(latitude);
             Lng.setText(longitude);
         }
@@ -120,6 +123,7 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
         uploadTree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyboard(ReportActivity.this);
                 treeName = addTreeName.getText().toString();
                 treeHeight = addTreeHeight.getText().toString();
                 treeHealth = addTreeHealth.getText().toString();
@@ -129,12 +133,15 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
                 if (!treeName.isEmpty() && !treeHeight.isEmpty() && !treeHealth.isEmpty() && !latitude.isEmpty() && !longitude.isEmpty()) {
                     if (isTreeImageAdded != false) {
                         uploadImage(treeName, treeHeight, treeHealth, latitude, longitude);
-                    }
-                    else {
+                        addTreeName.setText("");
+                        addTreeHeight.setText("");
+                        addTreeHealth.setText("");
+                        addTreeImage.setImageResource(R.drawable.add_a_photo);
+                        startActivity(new Intent(getApplicationContext(), MapActivity.class));
+                    } else {
                         Toast.makeText(ReportActivity.this, "Insert Image", Toast.LENGTH_SHORT).show();
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(ReportActivity.this, "Fill all fields", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -150,17 +157,17 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.map:
                         startActivity(new Intent(getApplicationContext()
                                 , MapActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.catalogue:
                         startActivity(new Intent(getApplicationContext()
                                 , HomeActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.report:
@@ -175,7 +182,7 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     private void uploadImage(final String treeName, final String treeHeight, final String treeHealth, final String latitude, final String longitude) {
-
+        final String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final String key = databaseReference.push().getKey();
         storageReference.child(key + ".jpg").putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -190,6 +197,7 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
                         hashMap.put("Lat", latitude);
                         hashMap.put("Lng", longitude);
                         hashMap.put("TreeImageUrl", uri.toString());
+                        hashMap.put("userID", userID);
 
                         databaseReference.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -206,8 +214,7 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==REQUEST_CODE_IMAGES && data!=null)
-        {
+        if (requestCode == REQUEST_CODE_IMAGES && data != null) {
             imageUri = data.getData();
             isTreeImageAdded = true;
             addTreeImage.setImageURI(imageUri);
@@ -222,11 +229,10 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        if (latitude != null && longitude != null){
+        if (latitude != null && longitude != null) {
             mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude))).title("Your Location"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude)), 15F));
-        }
-        else{
+        } else {
             LatLng CityHall = new LatLng(0.314931, 32.586236);
             CameraPosition position = new CameraPosition.Builder().target(CityHall).zoom(12).bearing(0).tilt(0).build();
             mMap.moveCamera(CameraUpdateFactory.newCameraPosition(position));
@@ -282,14 +288,14 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
                             if (task.isSuccessful()) {
                                 mLastLocation = task.getResult();
                                 if (mLastLocation != null) {
-                                    CameraPosition position = new CameraPosition.Builder().target(new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude())).zoom(15).bearing(0).tilt(0).build();
+                                    CameraPosition position = new CameraPosition.Builder().target(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude())).zoom(15).bearing(0).tilt(0).build();
                                     mMap.moveCamera(CameraUpdateFactory.newCameraPosition(position));
-                                        String lat = String.valueOf((mLastLocation.getLatitude()));
-                                        String lng = String.valueOf((mLastLocation.getLongitude()));
-                                        Lat.setText(lat);
-                                        Lng.setText(lng);
-                                        mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng))).title("Your Location"));
-                                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)), 15F));
+                                    String lat = String.valueOf((mLastLocation.getLatitude()));
+                                    String lng = String.valueOf((mLastLocation.getLongitude()));
+                                    Lat.setText(lat);
+                                    Lng.setText(lng);
+                                    mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng))).title("Your Location"));
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)), 15F));
 
                                 } else {
                                     locationRequest();
@@ -297,7 +303,7 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
                                 }
 
                             } else {
-                                Toast.makeText(ReportActivity.this, "Can't  get your location", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ReportActivity.this, "Can't Locate You", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -351,5 +357,17 @@ public class ReportActivity extends AppCompatActivity implements OnMapReadyCallb
                 }
             }
         }
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        view.clearFocus();
     }
 }

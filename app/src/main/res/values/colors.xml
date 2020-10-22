@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#F8F6F6</color>
-    <color name="colorPrimaryDark">#1A7784</color>
+    <color name="colorPrimaryDark">#1D3E5B</color>
     <color name="grayLight">#fafafa</color>
     <color name="starBlue">#09c6df</color>
     <color name="endBlue">#0bcce6</color>
     <color name="colorAccent">#070707</color>
-    <color name="wavePrimary">#09c6df</color>
-    <color name="wavePrimaryDark">#09c6df</color>
 </resources>

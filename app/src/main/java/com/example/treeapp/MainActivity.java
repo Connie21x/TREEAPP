@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -43,6 +45,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -125,6 +128,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyboard(MainActivity.this);
+
                 imageName = inputImageName.getText().toString();
                 imageCommonName = inputImageCommonName.getText().toString();
                 latitude = Lat.getText().toString();
@@ -132,6 +137,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (!imageName.isEmpty() && !imageCommonName.isEmpty() && !latitude.isEmpty() && !longitude.isEmpty()) {
                     if (isImageAdded != false) {
                         uploadImage(imageName,imageCommonName, latitude, longitude);
+                        inputImageName.setText("");
+                        inputImageCommonName.setText("");
+                        imageViewAdd.setImageResource(R.drawable.add_a_photo);
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+
                     } else {
                         Toast.makeText(MainActivity.this, "Insert Image", Toast.LENGTH_SHORT).show();
                     }
@@ -146,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         private void uploadImage(final String imageName, final String imageCommonName, final String latitude, final String longitude ) {
         textViewProgress.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
-
+            final String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final String key = Dataref.push().getKey();
         StorageRef.child(key + ".jpg").putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -161,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         hashMap.put("Lats", latitude);
                         hashMap.put("Lngs", longitude);
                         hashMap.put("ImageUrl", uri.toString());
+                        hashMap.put("userID", userID);
 
                         Dataref.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -275,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 }
 
                             } else {
-                                Toast.makeText(MainActivity.this, "Can't  get your location", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Can't Locate You", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -328,5 +339,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         }
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        view.clearFocus();
     }
 }

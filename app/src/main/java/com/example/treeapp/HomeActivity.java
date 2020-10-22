@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -29,6 +32,8 @@ import com.squareup.picasso.Picasso;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private String editBtn;
+
     EditText inputSearch;
     RecyclerView recyclerView;
     FloatingActionButton floatingbtn, floatingActionButton;
@@ -37,10 +42,15 @@ public class HomeActivity extends AppCompatActivity {
     DatabaseReference Dataref;
     ImageView imageViewButton;
 
+    private static final String MY_PREF_FILENAME ="com.example.treeapp.category";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        SharedPreferences preferences =getSharedPreferences(MY_PREF_FILENAME,MODE_PRIVATE);
+        String category = preferences.getString("category","");
 
         //Initialize and Assign Variables
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -82,6 +92,14 @@ public class HomeActivity extends AppCompatActivity {
         imageViewButton = findViewById(R.id.editButton);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setHasFixedSize(true);
+
+        editBtn = getIntent().getStringExtra("type");
+        if ((editBtn !=null && editBtn.equals("admin"))||category.equals("admin")){
+            imageViewButton.setVisibility(View.VISIBLE);
+        }
+
+
+
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +149,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
 
     //Logout method
     public void logout (View view){

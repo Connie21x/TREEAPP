@@ -10,7 +10,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/wavePrimary"
+        android:background="@color/colorPrimaryDark"
         android:id="@+id/topView"/>
     
     <View
@@ -29,7 +29,7 @@
         <TextView
             android:layout_marginStart="15dp"
             android:layout_width="304dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="60dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_weight="2"
@@ -42,7 +42,7 @@
         <ImageView
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:src="@drawable/circlecropped"
+            android:src="@drawable/baseline_account"
             android:layout_marginRight="20dp"
             android:layout_marginTop="32dp"
             android:id="@+id/profileLogin"/>
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/layoutViewOne"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="35dp"
         android:layout_marginLeft="30dp"
         android:background="@drawable/roundbutton">
@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:text="ADMIN"
         android:id="@+id/adminCheckBox"
-        android:textColor="@color/wavePrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_below="@+id/loginBtn"
         android:layout_marginTop="10dp"
         android:layout_centerInParent="true"/>
@@ -147,7 +147,7 @@
         android:text="FORGOT PASSWORD?"
         android:fontFamily="@font/dosis"
         android:textStyle="bold"
-        android:textColor="@color/wavePrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18dp"/>
 
     <LinearLayout
@@ -157,7 +157,7 @@
         android:layout_below="@id/forgotPassword"
         android:layout_centerInParent="true"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="50dp"
         android:weightSum="2">
 
@@ -187,22 +187,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/createNew"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/dosis"
         android:textStyle="bold"
         android:text="New User? Register Now!"
-        android:textColor="@color/wavePrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"/>
 
     <ProgressBar
         android:id="@+id/progressBars"
         style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_below="@id/createText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:progressTint="@color/wavePrimary"
+        android:layout_marginTop="15dp"
+        android:progressTint="@color/colorPrimaryDark"
         android:visibility="invisible"/>
 
 </RelativeLayout>

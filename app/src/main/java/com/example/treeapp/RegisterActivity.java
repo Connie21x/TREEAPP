@@ -3,11 +3,14 @@ package com.example.treeapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -36,6 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userID;
 
+    private static final String MY_PREF_FILENAME ="com.example.treeapp.category";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +58,29 @@ public class RegisterActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBars);
 
+        SharedPreferences preferences =getSharedPreferences(MY_PREF_FILENAME,MODE_PRIVATE);
+        String category = preferences.getString("category","");
+
+
         if (fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            if (category.equals("admin")){
+
+            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+            intent.putExtra("type","admin");
+            startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                intent.putExtra("type","user");
+                startActivity(intent);
+            }
+
             finish();
         }
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                hideKeyboard(RegisterActivity.this);
                 final String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 final String userName = mUserName.getText().toString();
@@ -86,6 +107,13 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(RegisterActivity.this, "User Created!", Toast.LENGTH_SHORT).show();
+
+                            mEmail.setText("");
+                            mPassword.setText("");
+                            mUserName.setText("");
+                            mPhone.setText("");
+                            mAddress.setText("");
+
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String, Object> user = new HashMap<>();
@@ -122,5 +150,17 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        view.clearFocus();
     }
 }

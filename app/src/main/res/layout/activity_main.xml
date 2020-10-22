@@ -10,7 +10,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/wavePrimary"
+        android:background="@color/colorPrimaryDark"
         android:id="@+id/topView"/>
 
     <View
@@ -41,8 +41,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dosis"
                 android:text="Report a New Species"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textSize="24sp"
                 android:textStyle="bold"/>
             <TextView
                 android:layout_width="match_parent"
@@ -50,8 +50,8 @@
                 android:text="Report a New Species for the Catalogue"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/dosis"
-                android:textColor="#000000"
-                android:textSize="17sp"/>
+                android:textColor="@color/white"
+                android:textSize="22sp"/>
 
         </LinearLayout>
         <ImageView
@@ -171,7 +171,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:text="0.0%"
-        android:textColor="@color/wavePrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="25sp"/>
 
     <ProgressBar
@@ -182,7 +182,7 @@
         android:layout_below="@id/textViewProgress"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
-        android:progressTint="@color/wavePrimary"/>
+        android:progressTint="@color/colorPrimaryDark"/>
 
     <Button
         android:layout_below="@+id/progressBar"

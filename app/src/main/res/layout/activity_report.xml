@@ -10,7 +10,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@color/wavePrimary"
+        android:background="@color/colorPrimaryDark"
         android:id="@+id/topView"/>
 
     <View
@@ -32,7 +32,7 @@
             android:layout_width="170dp"
             android:layout_height="170dp"
             android:src="@drawable/add_a_photo"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="25dp"
             android:id="@+id/imageNewTree"
             android:layout_marginLeft="5dp"/>
 
@@ -42,7 +42,7 @@
             android:layout_weight="3"
             android:layout_marginTop="60dp"
             android:orientation="vertical"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="15dp">
 
             <TextView
@@ -50,8 +50,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dosis"
                 android:text="Report a Tree"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="32sp"
+                android:textColor="#000000"
+                android:textSize="30sp"
                 android:textStyle="bold"/>
             <TextView
                 android:layout_width="match_parent"
@@ -59,8 +59,8 @@
                 android:text="Report a Dangerous or New Tree"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/dosis"
-                android:textColor="#000000"
-                android:textSize="19sp"/>
+                android:textColor="@color/white"
+                android:textSize="22sp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -69,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutViewOne"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="45dp"
         android:layout_marginLeft="30dp"
         android:orientation="horizontal"
         android:layout_marginRight="30dp"
@@ -202,7 +202,8 @@
         android:layout_marginRight="32dp"
         android:layout_below="@id/linearLayoutProfile"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/dosis_bold"
+        android:fontFamily="@font/dosis"
+        android:textStyle="bold"
         android:text="Submit"
         android:textColor="@color/white"
         android:textSize="18sp"/>

@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     String userID;
     Button logoutBtn;
     ImageView catalogue, map, report;
+    private static final String MY_PREF_FILENAME ="com.example.treeapp.category";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        if (fAuth.getCurrentUser()!= null) {
-
+        if (fAuth.getCurrentUser() != null) {
             userID = fAuth.getCurrentUser().getUid();
         }
         catalogue.setOnClickListener(new View.OnClickListener() {
@@ -74,23 +75,30 @@ public class ProfileActivity extends AppCompatActivity {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SharedPreferences.Editor editor= getSharedPreferences(MY_PREF_FILENAME,MODE_PRIVATE).edit();
+                editor.putString("category","");
+                editor.apply();
+
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(ProfileActivity.this, "Thanks You for Using the TREE APP", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                //finish();
+                finish();
             }
         });
+        if (fAuth.getCurrentUser() != null) {
 
-        DocumentReference documentReference = fStore.collection("users").document(userID);
-         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                assert value != null;
-                phone.setText(value.getString("phone"));
-                userName.setText(value.getString("uName"));
-                email.setText(value.getString("email"));
-                mPlace.setText(value.getString("address"));;
-            }
-        });
+            DocumentReference documentReference = fStore.collection("users").document(userID);
+            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                    assert value != null;
+                    phone.setText(value.getString("phone"));
+                    userName.setText(value.getString("uName"));
+                    email.setText(value.getString("email"));
+                    mPlace.setText(value.getString("address"));
+                }
+            });
+        }
     }
 }
