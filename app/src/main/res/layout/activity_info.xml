@@ -1,9 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InfoActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/closeBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:clickable="true"
+        android:src="@drawable/close"
+        android:layout_alignParentRight="true"
+        android:focusable="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="8dp"/>
+
+    <LinearLayout
+        android:padding="3dp"
+        android:id="@+id/layoutViewThree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="30dp">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/treeinfos"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/passwords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dosis"
+            android:text="TREE APP Info"
+            android:paddingLeft="25dp"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutViewThree"
+        android:fontFamily="@font/dosis"
+        android:text="The TREE APP has been developed to capture Kampala's Tree Biodiversity as well as aid Reporting from the Public to enhance the Management of Trees."
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/features"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dosis"
+        android:layout_below="@id/description"
+        android:layout_marginTop="8dp"
+        android:text="Guide"
+        android:paddingLeft="18dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <LinearLayout
+        android:padding="3dp"
+        android:layout_below="@+id/features"
+        android:id="@+id/layoutViewOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/catalogue"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dosis"
+            android:text="The Catalogue has over 200 species within Kampala with their Location, Common names, Origin, Images, Uses, Description, Manegement and Propgation Regimes"
+            android:paddingLeft="5dp"
+            android:textSize="17sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="3dp"
+        android:layout_below="@+id/layoutViewOne"
+        android:id="@+id/layoutViewTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/map"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dosis"
+            android:text="The Map has the Location of all the Catalogued Trees where the User can locate them physically in reference to their location"
+            android:paddingLeft="5dp"
+            android:textSize="17sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="3dp"
+        android:layout_below="@+id/layoutViewTwo"
+        android:id="@+id/layoutViewFour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginLeft="18dp">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/report"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dosis"
+            android:text="The User reports a new Tree or Species to the database, the parameters needed are Lat, Lng, Tree Name, Photo, Tree Health and Height"
+            android:paddingLeft="5dp"
+            android:textSize="17sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/featuresOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dosis"
+        android:layout_below="@id/layoutViewFour"
+        android:layout_marginTop="8dp"
+        android:text="Acknowledgement"
+        android:paddingLeft="18dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:layout_below="@id/featuresOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dosis"
+        android:text="Special Thanks goes to Kampala Capital City Authority for Provision of the Data.  Great Recognition also goes to Katende A. B et al. who documented most of trees in 'Useful Trees and Shrubs for Uganda: Identification, Propagation, and Management for Agricultural and Pastoral Communities'. Regional Soil Conservation Unit, 1995"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+
+</RelativeLayout>

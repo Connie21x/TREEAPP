@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseRecyclerOptions<Data> options;
     FirebaseRecyclerAdapter<Data, MyViewHolder> adapter;
     DatabaseReference Dataref;
-    ImageView imageViewButton;
+    ImageView imageViewButton, infoBtn;
 
     private static final String MY_PREF_FILENAME ="com.example.treeapp.category";
 
@@ -92,14 +92,19 @@ public class HomeActivity extends AppCompatActivity {
         imageViewButton = findViewById(R.id.editButton);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setHasFixedSize(true);
+        infoBtn = findViewById(R.id.infoButton);
 
         editBtn = getIntent().getStringExtra("type");
         if ((editBtn !=null && editBtn.equals("admin"))||category.equals("admin")){
             imageViewButton.setVisibility(View.VISIBLE);
         }
 
-
-
+        infoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext (), InfoActivity.class));
+            }
+        });
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

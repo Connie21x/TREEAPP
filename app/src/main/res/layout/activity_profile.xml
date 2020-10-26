@@ -11,16 +11,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:background="@color/colorPrimaryDark"
         android:id="@+id/topView"/>
-
-    <View
-        android:layout_below="@+id/topView"
-        android:id="@+id/topView2"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/ic_wavej"/>
 
     <LinearLayout
         android:id="@+id/layoutSpeciesOne"

@@ -18,7 +18,7 @@
         android:id="@+id/topView2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@drawable/ic_wavej"/>
+        android:background="@drawable/ic_wave"/>
 
     <LinearLayout
         android:id="@+id/layoutViewSpecies"
@@ -56,10 +56,10 @@
         </LinearLayout>
         <ImageView
             android:layout_weight="1"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:src="@drawable/add_a_photo"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="25dp"
             android:id="@+id/imageViewAdd"
             android:layout_marginRight="12dp"/>
     </LinearLayout>
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutViewSpecies"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="30dp"
         android:orientation="horizontal"
         android:layout_marginRight="30dp"
